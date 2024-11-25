@@ -40,7 +40,8 @@
       android:imeOptions="actionGo"
       android:hint="@string/txtBarcode"
       android:textColorHint="#989aa2"
-      android:autofillHints="none" />
+      android:autofillHints="none"
+      android:enabled="false" />
 
     <Button
       android:id="@+id/submitBarcode"
