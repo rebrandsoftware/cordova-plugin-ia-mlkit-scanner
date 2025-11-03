@@ -290,7 +290,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   [self.txtBarcode setTextColor:[UIColor colorWithRed:34/255.0f green:36/255.0f blue:40/255.0f alpha:1.0f] ];
   self.txtBarcode.delegate = self;
   UIColor *color = [UIColor colorWithRed:152.0f/255.0f green:154.0f/255.0f blue:162.0f/255.0f alpha:152.0f/255.0f];
-  self.txtBarcode.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Scan Barcode" attributes:@{NSForegroundColorAttributeName: color}];
+  self.txtBarcode.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Scan Barcode v2" attributes:@{NSForegroundColorAttributeName: color}];
   [self.txtBarcode setAutocorrectionType:UITextAutocorrectionTypeNo];
   [self.txtBarcode setReturnKeyType:UIReturnKeyDone];
   
