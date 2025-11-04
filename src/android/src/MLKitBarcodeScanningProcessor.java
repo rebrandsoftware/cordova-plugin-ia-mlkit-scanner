@@ -96,75 +96,27 @@ public class MLKitBarcodeScanningProcessor {
         DetectInVisionImage(image);
     }
     
-    // private void DetectInVisionImage(InputImage p_Image) {
-    //     BarcodeScannerOptions options =
-    //             new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_CODE_39).build();
-        
-    //     BarcodeScanner scanner = BarcodeScanning.getClient(options);
-        
-    //     Task<List<Barcode>> result =
-    //             scanner.process(p_Image).addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
-                    
-    //                 @Override
-    //                 public void onSuccess(List<Barcode> barcodes) {
-    //                     OnSuccess(barcodes);
-    //                     ProcessLatestImage();
-    //                 }
-    //             }).addOnFailureListener(new OnFailureListener() {
-                    
-    //                 @Override
-    //                 public void onFailure(@NonNull Exception e) {
-    //                     OnFailure(e);
-    //                 }
-    //             });
-    // }
-
     private void DetectInVisionImage(InputImage p_Image) {
-        // Constrain ML Kit to CODE_39 only
         BarcodeScannerOptions options =
-            new BarcodeScannerOptions.Builder()
-                .setBarcodeFormats(Barcode.FORMAT_CODE_39)
-                .build();
-
+                new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_CODE_39).build();
+        
         BarcodeScanner scanner = BarcodeScanning.getClient(options);
-
-        scanner.process(p_Image)
-            .addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
-                @Override
-                public void onSuccess(List<Barcode> barcodes) {
-                    // ✅ Guard: ignore empty results or barcodes with no rawValue
-                    if (barcodes == null || barcodes.isEmpty()) {
-                        // silently ignore this frame and wait for next
+        
+        Task<List<Barcode>> result =
+                scanner.process(p_Image).addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
+                    
+                    @Override
+                    public void onSuccess(List<Barcode> barcodes) {
+                        OnSuccess(barcodes);
                         ProcessLatestImage();
-                        return;
                     }
-
-                    // Pick the first non-empty value (or keep last good value if you wish)
-                    String value = null;
-                    for (Barcode b : barcodes) {
-                        if (b.getRawValue() != null && !b.getRawValue().isEmpty()) {
-                            value = b.getRawValue();
-                            break;
-                        }
+                }).addOnFailureListener(new OnFailureListener() {
+                    
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        OnFailure(e);
                     }
-
-                    if (value == null || value.isEmpty()) {
-                        // nothing meaningful decoded; skip
-                        ProcessLatestImage();
-                        return;
-                    }
-
-                    // Only call OnSuccess when we actually have a value
-                    OnSuccess(barcodes);
-                    ProcessLatestImage();
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    OnFailure(e);
-                }
-            });
+                });
     }
     
     private void OnSuccess(List<Barcode> p_Barcodes) {
