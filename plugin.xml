@@ -24,7 +24,7 @@
 		</config-file>
 		<config-file target="res/values/strings.xml" parent="/*">
 			<string name="txtBarcode">
-				Scan Barcode v2
+				Scan Barcode
 			</string>
 			<string name="ok">
 				OK
