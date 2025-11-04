@@ -296,7 +296,7 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
   private void createCameraSource(boolean autoFocus, boolean useFlash, Integer cameraFacing) {
     BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
   		.setBarcodeFormats(
-  		  Barcode.FORMAT_CODE_39
+  		  Barcode.FORMAT_ALL_FORMATS
       )
       .build();
 

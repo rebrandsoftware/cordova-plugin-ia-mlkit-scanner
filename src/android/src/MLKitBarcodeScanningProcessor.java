@@ -98,7 +98,7 @@ public class MLKitBarcodeScanningProcessor {
     
     private void DetectInVisionImage(InputImage p_Image) {
         BarcodeScannerOptions options =
-                new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_CODE_39).build();
+                new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS).build();
         
         BarcodeScanner scanner = BarcodeScanning.getClient(options);
         
